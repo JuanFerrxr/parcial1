@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import {Routes, Route, useNavigate} from 'react-router-dom';
+import Password from './password';
 
 import {
     MDBContainer,
@@ -12,7 +14,13 @@ import {
 }
 from 'mdb-react-ui-kit';
   
-  function Login() {
+  function Email() {
+    const navigate = useNavigate();
+    const navigateToPassword = () => {
+      // 👇️ navigate to /contacts
+      navigate('/password.js');
+    };
+
     const [formValues, setFormValues] = useState({
         email: "",
         password: "",
@@ -55,6 +63,7 @@ from 'mdb-react-ui-kit';
             setValidationStates({ ...validationStates, emailState: false });
             return;
         }
+        navigateToPassword();
 
       };
     return (
@@ -91,6 +100,10 @@ from 'mdb-react-ui-kit';
     
               </MDBCardBody>
             </MDBCard>
+
+          <Routes>
+            <Route path="/password.js" element={<Password />} />
+          </Routes>
   
           </MDBCol>
         </MDBRow>
@@ -100,4 +113,4 @@ from 'mdb-react-ui-kit';
     );
   }
   
-  export default Login;
+  export default Email;
